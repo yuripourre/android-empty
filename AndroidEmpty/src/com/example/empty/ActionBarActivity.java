@@ -12,10 +12,19 @@ import android.widget.Toast;
 
 public class ActionBarActivity extends Activity {
 
+	private int menuItems = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		this.menuItems = 0;
+		
+		createLayout();
+	}
+	
+	private void createLayout(){
+		
 		LinearLayout layout = new LinearLayout(this.getBaseContext());
 
 		layout.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -49,9 +58,7 @@ public class ActionBarActivity extends Activity {
 	private void itemAction(){
 		Toast.makeText(getApplicationContext(), "Item Action", Toast.LENGTH_SHORT).show();
 	}
-	
-	private int menuItems = 0;
-	
+		
 	protected MenuItem addActionBarItem(Menu menu, String title, int iconId){
 		
 		menuItems++;
