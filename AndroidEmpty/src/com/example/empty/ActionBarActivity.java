@@ -1,6 +1,7 @@
 package com.example.empty;
 
 import com.example.empty.R;
+import com.example.empty.helper.MenuHelper;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,13 +13,11 @@ import android.widget.Toast;
 
 public class ActionBarActivity extends Activity {
 
-	private int menuItems = 0;
+	private MenuHelper helper;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		this.menuItems = 0;
 		
 		createLayout();
 	}
@@ -37,9 +36,11 @@ public class ActionBarActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		MenuItem item = addActionBarItem(menu, R.string.action_search, R.drawable.ic_action_search);
+		helper = new MenuHelper(menu);
 		
-		MenuItem item2 = addActionBarItem(menu, "New", R.drawable.ic_action_new);
+		MenuItem item = helper.addItem(R.string.action_search, R.drawable.ic_action_search);
+		
+		MenuItem item2 = helper.addItem("New", R.drawable.ic_action_new);
 				
 		item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
@@ -57,34 +58,6 @@ public class ActionBarActivity extends Activity {
 
 	private void itemAction(){
 		Toast.makeText(getApplicationContext(), "Item Action", Toast.LENGTH_SHORT).show();
-	}
-		
-	protected MenuItem addActionBarItem(Menu menu, String title, int iconId){
-		
-		menuItems++;
-		
-		MenuItem item = menu.add(Menu.NONE, menuItems, Menu.NONE, title);
-		
-		item.setIcon(iconId);
-		
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-		
-		return item;
-		
-	}
-	
-	protected MenuItem addActionBarItem(Menu menu, int titleId, int iconId){
-		
-		menuItems++;
-		
-		MenuItem item = menu.add(Menu.NONE, menuItems, Menu.NONE, titleId);
-		
-		item.setIcon(iconId);
-		
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-		
-		return item;
-		
 	}
 	
 }
